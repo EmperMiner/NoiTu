@@ -6,8 +6,8 @@ let username, correct = false, result;
 
 document.getElementById("mySubmit").onclick = function(){
     username = document.getElementById("myText").value;
-    for (var i = 0; i < Object.keys(data[a]).length; i++) {
-        if (data[a][i] === username) { correct = true; }
+    for (var i = 0; i < Object.keys(data["a"]).length; i++) {
+        if (data["a"][i] === username) { correct = true; }
     }
     if (correct){
         result = 'Tồn tại!';
