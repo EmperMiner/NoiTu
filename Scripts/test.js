@@ -2,10 +2,11 @@ import data from './test.json' with { type: 'json' };
 console.log(data);
 console.log(data.a[0]);
 
-let word1 = "a", word2, correct = false, result, score = 0;
+let word1 = "a", word2, correct, result, score = 0;
 
 document.getElementById("mySubmit").onclick = function() {
     word2 = document.getElementById("myText").value;
+    correct = false;
     for (var i = 0; i < Object.keys(data[word1]).length; i++) {
         if (data[word1][i] === word2) { correct = true; }
     }
