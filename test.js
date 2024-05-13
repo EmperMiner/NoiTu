@@ -1,3 +1,6 @@
+import data from './test.json' assert { type: 'json' };
+console.log(data);
+
 let username;
 
 document.getElementById("mySubmit").onclick = function(){
