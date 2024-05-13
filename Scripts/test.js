@@ -2,7 +2,7 @@ import data from './test.json' with { type: 'json' };
 console.log(data);
 console.log(data.a[0]);
 
-let word1 = a, word2, correct = false, result, score = 0;
+let word1 = "a", word2, correct = false, result, score = 0;
 
 document.getElementById("mySubmit").onclick = function() {
     word2 = document.getElementById("myText").value;
