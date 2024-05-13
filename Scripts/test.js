@@ -2,10 +2,18 @@ import data from './test.json' with { type: 'json' };
 console.log(data);
 console.log(data.a[0]);
 
-let username;
+let username, correct = false, result;
 
 document.getElementById("mySubmit").onclick = function(){
     username = document.getElementById("myText").value;
-    document.getElementById("myH1").textContent = `Hello ${username}`
-    document.getElementById("myH2").textContent = `First value of key is ${data[username][0]}`
+    for (var i = 0; i < data[a].length; i++) {
+        if (data[a][i] === username) { correct = true; }
+    }
+    if (correct){
+        result = 'Tồn tại!';
+    }
+    else {
+        result = 'Không tồn tại.';
+    }
+    document.getElementById("myH2").textContent = result
 }
