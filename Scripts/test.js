@@ -1,6 +1,6 @@
 import data from './test.json' with { type: 'json' };
 console.log(data);
-console.log(JSON.parse(data));
+console.log(data.a[0]);
 
 let username;
 
