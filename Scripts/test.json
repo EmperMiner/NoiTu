@@ -1,13 +1,7 @@
-[
-    {
-        "thiên": "tài",
-        "tài": "năng",
-        "năng": "động",
-        "động": "lực",
-        "lực": "điền",
-        "điền": "kinh",
-        "kinh": "dị",
-        "dị": "hợm",
-        "hợm": "hĩnh"
-    }
-]
+{
+    "a":["bàng","bung","di","dong","dốt","dơi","du","dua","đa","đam","đảng","đẩu","đới","ga","giao","giăng","gon","ha","hành","hoàn","hoành","hộ","la","léc","len","lê","lô","lù","lưới","mam","măng","men","mi","min","míp","mrơn","ngo","ngu","nguỳ","nguỵ","nốt","phiến","posteriori","priori","roàng","rooi","sen","tiêng","ting","tlát","tòng","túc","tùng","vao","văng","vi","vương","xan","xen","xing","xit","xít","xít","xphan","yun","lê","lô","men","hoàn"],
+    "à":["à","này","ơi","uôm"],
+    "ả":["đào","đầu","hằng","hoàn","phiện","tạ","hằng"],
+    "á":["à","châu","đông","hậu","khanh","khẩu","khôi","kim","lao","nguyên","phiện","quân","sừng","thánh","đù"],
+    "ạ":["ơi"]
+}
