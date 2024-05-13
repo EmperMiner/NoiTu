@@ -2,18 +2,26 @@ import data from './test.json' with { type: 'json' };
 console.log(data);
 console.log(data.a[0]);
 
-let username, correct = false, result;
+let word1 = a, word2, correct = false, result, score = 0;
 
-document.getElementById("mySubmit").onclick = function(){
-    username = document.getElementById("myText").value;
-    for (var i = 0; i < Object.keys(data["a"]).length; i++) {
-        if (data["a"][i] === username) { correct = true; }
+document.getElementById("mySubmit").onclick = function() {
+    word2 = document.getElementById("myText").value;
+    for (var i = 0; i < Object.keys(data[word1]).length; i++) {
+        if (data[word1][i] === word2) { correct = true; }
     }
     if (correct){
-        result = 'Tồn tại!';
+        nextWord()
     }
     else {
-        result = 'Không tồn tại.';
+        document.getElementById("myH2").textContent = 'Từ không tồn tại.';
     }
-    document.getElementById("myH2").textContent = result
+}
+
+function nextWord() {
+    
+    document.getElementById("myH2").textContent = `Từ trước là: ${word1} ${word2}`
+    word1 = word2;
+    document.getElementById("myH1").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`
+    score++;
+    document.getElementById("score").textContent = `Số từ nối được: ${score}`
 }
