@@ -14,7 +14,7 @@ function gameStart() {
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
 
 //Ấn enter cũng submit
-document.getElementById("myText").addEventListener("onkeydown", function(event) {
+document.getElementById("myText").addEventListener("keypress", function(event) {
     if (event.key === "Enter") { submitWord(); }
 });
 document.getElementById("mySubmit").onclick = submitWord();
@@ -41,3 +41,4 @@ function randomWord() {
     let currentWord = word_start[Math.floor(Math.random() * word_start.length)];
     return currentWord;
 }
+document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!';
