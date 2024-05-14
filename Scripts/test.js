@@ -1,6 +1,4 @@
 import data from './test.json' with { type: 'json' };
-console.log(data);
-console.log(data.a[0]);
 
 let word1 = "a", word2, correct, result, score = 0;
 
@@ -16,7 +14,7 @@ function nextWord() {
     document.getElementById("myH2").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
     document.getElementById("score").textContent = `Số từ nối được: ${score}`
-    if (!thisSession.hasOwnProperty(word2)) { 
+    if (!data.hasOwnProperty(word2)) { 
         gameOver();
         return;
     }
