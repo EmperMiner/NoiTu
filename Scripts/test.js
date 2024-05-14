@@ -32,7 +32,7 @@ function nextWord() {
         return;
     }
     word1 = word2;
-    document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
+    document.getElementById("myH1").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`
 }
 
 function randomWord() {
