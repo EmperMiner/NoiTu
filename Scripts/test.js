@@ -4,7 +4,7 @@ let word1 = randomWord(), word2, score;
 gameStart();
 
 function gameStart() {
-    let word1 = randomWord();
+    word1 = randomWord();
     document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
     score = 0;
     document.getElementById("score").textContent = `Số từ nối được: ${score}`;
