@@ -14,6 +14,9 @@ function gameStart() {
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
 
 //Ấn enter cũng submit
+document.getElementById("myText").addEventListener("onkeydown", function(event) {
+    if (event.key === "Enter") { submitWord(); }
+});
 document.getElementById("mySubmit").onclick = submitWord();
 
 function submitWord() {
