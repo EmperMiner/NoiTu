@@ -31,7 +31,8 @@ function nextWord() {
         gameOver();
         return;
     }
-    else { document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`; }
+    word1 = word2;
+    document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
 }
 
 function randomWord() {
