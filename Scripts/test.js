@@ -13,10 +13,11 @@ function gameStart() {
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
 
 //Ấn enter cũng submit
-// document.getElementById("myText").addEventListener("keypress", function(event) {
-//     if (event.key === "Enter") { submitWord(); }
-// });
-document.getElementById("mySubmit").onclick = function() {
+document.getElementById("myText").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") { submitWord(); }
+});
+document.getElementById("mySubmit").onclick = submitWord();
+function submitWord() {
     word2 = document.getElementById("myText").value;
     if (vnDictionary[word1].includes(word2)) { nextWord(); }
     else { document.getElementById("myH2").textContent = 'Từ không tồn tại.'; }
