@@ -8,12 +8,13 @@ function gameStart() {
     document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
     score = 0;
     document.getElementById("score").textContent = `Số từ nối được: ${score}`;
+    document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!';
 }
 
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
 
 //Ấn enter cũng submit
-document.getElementById("myText").addEventListener("keypress", function(event) {
+document.getElementById("myText").addEventListener("onkeydown", function(event) {
     if (event.key === "Enter") { submitWord(); }
 });
 document.getElementById("mySubmit").onclick = submitWord();
