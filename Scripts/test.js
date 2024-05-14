@@ -1,5 +1,5 @@
 import vnDictionary from './test.json' with { type: 'json' };
-import word_start from './words_start.json';
+import word_start from './words_start.json' with { type: 'json' };
 
 let word1 = randomWord(), word2, score;
 gameStart();
