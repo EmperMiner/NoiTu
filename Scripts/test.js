@@ -7,7 +7,7 @@ function gameStart() {
     let word1 = randomWord();
     document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
     score = 0;
-    document.getElementById("score").textContent = `Số từ nối được: ${score}`
+    document.getElementById("score").textContent = `Số từ nối được: ${score}`;
 }
 
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
@@ -26,13 +26,13 @@ function nextWord() {
     document.getElementById("myText").value = "" //Empty the input text box
     document.getElementById("myH2").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
-    document.getElementById("score").textContent = `Số từ nối được: ${score}`
+    document.getElementById("score").textContent = `Số từ nối được: ${score}`;
     if (!vnDictionary.hasOwnProperty(word2)) { 
         gameOver();
         return;
     }
     word1 = word2;
-    document.getElementById("myH1").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`
+    document.getElementById("myH1").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`;
 }
 
 function randomWord() {
