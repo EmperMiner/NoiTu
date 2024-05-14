@@ -4,7 +4,14 @@ import start from './words_start.js';
 let word1, word2, score = 0;
 gameStart();
 
-document.getElementById("mySubmit").onclick = function() {
+//Ấn enter cũng submit
+document.getElementById("myText").addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") { submitWord(); }
+});
+
+document.getElementById("mySubmit").onclick = submitWord();
+function submitWord() {
     word2 = document.getElementById("myText").value;
     if (data[word1].includes(word2)) { nextWord(); }
     else { document.getElementById("myH2").textContent = 'Từ không tồn tại.'; }
