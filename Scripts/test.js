@@ -17,12 +17,11 @@ function gameStart() {
 }
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
 //Ấn enter cũng submit
+document.getElementById("mySubmit").onclick = submitWord();
 document.getElementById("myText").addEventListener("keypress", function(event) {
     if (event.key === "Enter") { submitWord(); }
 });
-document.getElementById("mySubmit").onclick = submitWord();
 function submitWord() {word2 = sort_input(document.getElementById("myText").value);
-console.log(word2)
 if (vnDictionary[word1].includes(word2)) { nextWord(); }
 else { document.getElementById("myH2").textContent = 'Từ không tồn tại.'; }
 }
