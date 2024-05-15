@@ -6,26 +6,25 @@ gameStart();
 function gameStart() {
     gameEnded = false;
     word1 = randomWord();
-    document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
-    document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!';
+    document.getElementById("currentWordDisplay").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
+    document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
-    document.getElementById("score").textContent = `Số từ nối được: ${score}`;
+    document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
 }
-document.getElementById("reset-btn").onclick = function() { gameStart(); }
+document.getElementById("reset-btn").onclick = function() { location.reload(); }
 
 //Countdown timer
 var secondsLeft = 30, secondsDisplayed, minutesDisplayed;
 var elem = document.getElementById("timer");
 var timerId = setInterval(countdown, 1000);
+modifyTimer(0); //Initialize Timer UI
     
 function countdown() {
     if (secondsLeft == 0) {
         clearTimeout(timerId);
         gameOver();
     }
-    else {
-        modifyTimer(-1);
-    }
+    else { modifyTimer(-1); }
 }
 
 function modifyTimer(time) {
@@ -45,7 +44,7 @@ document.getElementById("myText").addEventListener("keypress", function(event) {
     if (event.key === "Enter" && gameEnded == false) { submitWord(); }
 });
 //Fixes the error where submitWord() is called once at runtime
-document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!'; 
+document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!'; 
 
 function submitWord() {word2 = sort_input(document.getElementById("myText").value);
 gameLogic();
@@ -53,31 +52,27 @@ gameLogic();
 
 function nextWord() {
     modifyTimer(5) //Add 5 seconds every time you get a word right
-    console.log(previousValue)
     document.getElementById("myText").value = "" //Empty the input text box
-    document.getElementById("myH2").textContent = `Từ trước là: ${word1} ${word2}`
+    document.getElementById("otherDisplay").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
-    document.getElementById("score").textContent = `Số từ nối được: ${score}`;
+    document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
     if (!vnDictionary.hasOwnProperty(word2)) {
         score++ 
         gameOver();
         return;
     }
     word1 = word2;
-    document.getElementById("myH1").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`;
+    document.getElementById("currentWordDisplay").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`;
 }
 function randomWord() {
 let currentWord = word_start[Math.floor(Math.random() * word_start.length)];
 return currentWord;
 }
-function sort_input(word) {
-    word = word.toLowerCase().trim();
-    return word
-}
+function sort_input(word) { return word.toLowerCase().trim(); }
 
 function gameLogic() {  
     if(!vnDictionary[word1].includes(word2)) {   
-        document.getElementById("myH2").textContent = 'Từ không tồn tại XD'; 
+        document.getElementById("otherDisplay").textContent = 'Từ không tồn tại XD'; 
         return;
     }
     
@@ -85,7 +80,7 @@ function gameLogic() {
     if (word1 in previousValue) {
         //Check if word2 is a value of the key word1 in previousValue
         if (previousValue[word1].includes(word2)) {
-            document.getElementById("myH2").textContent = 'Từ đã được sử dụng :P'
+            document.getElementById("otherDisplay").textContent = 'Từ đã được sử dụng :P'
         }
         else {                
             previousValue[word1].push(word2); //Add value word2 to the key word1
@@ -100,10 +95,12 @@ function gameLogic() {
 
 function gameOver() {
     gameEnded = true;
-    document.getElementById("myH1").textContent = `Trò chơi kết thúc`;
-    document.getElementById("myH2").textContent = '';
-    document.getElementById("score").textContent = `Tổng số từ nối được: ${score}`;
+    var listOfWords;
     for (var i = 0, keys = Object.keys(previousValue), ii = keys.length; i < ii; i++) {
-        console.log(keys[i] + ' ' + previousValue[keys[i]]);
+        listOfWords += keys[i] + ' ' + previousValue[keys[i]] + '\n';
     }
+
+    document.getElementById("currentWordDisplay").textContent = `Trò chơi kết thúc`;
+    document.getElementById("otherDisplay").textContent = listOfWords;
+    document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
