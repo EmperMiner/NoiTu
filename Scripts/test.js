@@ -1,32 +1,64 @@
 import vnDictionary from './test.json' with { type: 'json' };
 import word_start from './words_start.json' with { type: 'json' };
-let word1 = randomWord(), word2, score;
-var previous_value = {}
+let word1 = randomWord(), word2, score, gameEnded;
+var previousValue = {}
 gameStart();
 function gameStart() {
+    gameEnded = false;
     word1 = randomWord();
     document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
+    document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
     document.getElementById("score").textContent = `Số từ nối được: ${score}`;
-    document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!';
 }
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
-//Ấn enter cũng submit
-document.getElementById("mySubmit").onclick = function() { submitWord(); }
-document.getElementById("myText").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") { submitWord(); }
-});
+
+//Countdown timer
+var secondsLeft = 30, secondsDisplayed, minutesDisplayed;
+var elem = document.getElementById("timer");
+var timerId = setInterval(countdown, 1000);
+    
+function countdown() {
+    if (secondsLeft == -1) {
+        clearTimeout(timerId);
+        gameOver();
+    }
+    else {
+        modifyTimer(-1);
+    }
+}
+
+function modifyTimer(time) {
+    secondsLeft += time;
+    //Refresh timer UI
+    minutesDisplayed = Math.floor(secondsLeft / 60);
+    secondsDisplayed = secondsLeft % 60;
+    elem.innerHTML = `Bom nổ trong ${minutesDisplayed}m${secondsDisplayed}s`;
+}
+
+//Enter for submitting
+if (gameEnded == false){
+    document.getElementById("mySubmit").onclick = function() { submitWord(); }
+    document.getElementById("myText").addEventListener("keypress", function(event) {
+        if (event.key === "Enter") { submitWord(); }
+    });
+}
+//Fixes the error where submitWord() is called once at runtime
+document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!'; 
+
 function submitWord() {word2 = sort_input(document.getElementById("myText").value);
 gameLogic();
 }
 
 function nextWord() {
-    console.log(previous_value)
+    modifyTimer(5) //Add 5 seconds every time you get a word right
+    console.log(previousValue)
     document.getElementById("myText").value = "" //Empty the input text box
     document.getElementById("myH2").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
     document.getElementById("score").textContent = `Số từ nối được: ${score}`;
-    if (!vnDictionary.hasOwnProperty(word2)) { 
+    if (!vnDictionary.hasOwnProperty(word2)) {
+        score++ 
         gameOver();
         return;
     }
@@ -41,27 +73,33 @@ function sort_input(word) {
     word = word.toLowerCase().trim();
     return word
 }
-//New function
+
 function gameLogic() {  
     if(!vnDictionary[word1].includes(word2)) {   
-        document.getElementById("myH2").textContent = 'Từ không tồn tại.'; 
+        document.getElementById("myH2").textContent = 'Từ không tồn tại XD'; 
         return;
     }
     
-    if (word1 in previous_value)
-    {
-        if (previous_value[word1].includes(word2)) {
-            document.getElementById("myH2").textContent = 'Lỗi vì từ đã được input :Đ'
+    //Check if word1 is a key in previousValue
+    if (word1 in previousValue) {
+        //Check if word2 is a value of the key word1 in previousValue
+        if (previousValue[word1].includes(word2)) {
+            document.getElementById("myH2").textContent = 'Từ đã được sử dụng :P'
         }
         else {                
-            previous_value[word1].push(word2);
+            previousValue[word1].push(word2); //Add value word2 to the key word1
             nextWord();
         }
     }
     else {
-        previous_value[word1] = [word2];
+        previousValue[word1] = [word2]; //Add a new key word1 + value word2
         nextWord();
     }
 }
-      
-document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!';
+
+function gameOver() {
+    gameEnded = true;
+    document.getElementById("myH1").textContent = `Trò chơi kết thúc`;
+    document.getElementById("myH2").textContent = '';
+    document.getElementById("score").textContent = `Tổng số từ nối được: ${score}`;
+}
