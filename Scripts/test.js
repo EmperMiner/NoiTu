@@ -19,7 +19,7 @@ var elem = document.getElementById("timer");
 var timerId = setInterval(countdown, 1000);
     
 function countdown() {
-    if (secondsLeft == -1) {
+    if (secondsLeft == 0) {
         clearTimeout(timerId);
         gameOver();
     }
@@ -37,12 +37,13 @@ function modifyTimer(time) {
 }
 
 //Enter for submitting
-if (gameEnded == false){
-    document.getElementById("mySubmit").onclick = function() { submitWord(); }
-    document.getElementById("myText").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") { submitWord(); }
-    });
+document.getElementById("mySubmit").onclick = function() { 
+    if (gameEnded == false) { submitWord(); }
+
 }
+document.getElementById("myText").addEventListener("keypress", function(event) {
+    if (event.key === "Enter" && gameEnded == false) { submitWord(); }
+});
 //Fixes the error where submitWord() is called once at runtime
 document.getElementById("myH2").textContent = 'Bạn chưa nối từ nào!'; 
 
