@@ -6,7 +6,7 @@ gameStart();
 function gameStart() {
     gameEnded = false;
     word1 = randomWord();
-    document.getElementById("currentWordDisplay").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
+    document.getElementById("currentWordDisplay").textContent = `Từ đầu tiên là: ${word1} _`;
     document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
     document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
@@ -20,10 +20,7 @@ var timerId = setInterval(countdown, 1000);
 modifyTimer(0); //Initialize Timer UI
     
 function countdown() {
-    if (secondsLeft == 0) {
-        clearTimeout(timerId);
-        gameOver();
-    }
+    if (secondsLeft == 0) { gameOver(); }
     else { modifyTimer(-1); }
 }
 
@@ -62,7 +59,7 @@ function nextWord() {
         return;
     }
     word1 = word2;
-    document.getElementById("currentWordDisplay").textContent = `Nối thành công! Từ tiếp theo là: ${word1} _`;
+    document.getElementById("currentWordDisplay").textContent = `Ngon! Từ mới là: ${word1} _`;
 }
 function randomWord() {
 let currentWord = word_start[Math.floor(Math.random() * word_start.length)];
@@ -94,10 +91,11 @@ function gameLogic() {
 }
 
 function gameOver() {
+    clearTimeout(timerId);
     gameEnded = true;
-    var listOfWords;
+    var listOfWords = '';
     for (var i = 0, keys = Object.keys(previousValue), ii = keys.length; i < ii; i++) {
-        listOfWords += keys[i] + ' ' + previousValue[keys[i]] + '\n';
+        listOfWords += keys[i] + ' ' + previousValue[keys[i]] + ' - ';
     }
 
     document.getElementById("currentWordDisplay").textContent = `Trò chơi kết thúc`;
