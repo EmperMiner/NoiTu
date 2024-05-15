@@ -17,7 +17,7 @@ function gameStart() {
 }
 document.getElementById("reset-btn").onclick = function() { gameStart(); }
 //Ấn enter cũng submit
-document.getElementById("mySubmit").onclick = submitWord();
+document.getElementById("mySubmit").onclick = function() { submitWord(); }
 document.getElementById("myText").addEventListener("keypress", function(event) {
     if (event.key === "Enter") { submitWord(); }
 });
