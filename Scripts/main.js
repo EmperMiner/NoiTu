@@ -102,3 +102,4 @@ function gameOver() {
     document.getElementById("otherDisplay").textContent = listOfWords;
     document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
+//Dat Branch check
