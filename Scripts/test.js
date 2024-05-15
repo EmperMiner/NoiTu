@@ -1,7 +1,6 @@
 import vnDictionary from './test.json' with { type: 'json' };
 import word_start from './words_start.json' with { type: 'json' };
 let word1 = randomWord(), word2, score;
-const previous_value = {}
 Object.prototype.isEmpty = function() {
     for (var prop in this) if (this.hasOwnProperty(prop)) return false;
     return true;
@@ -9,6 +8,7 @@ Object.prototype.isEmpty = function() {
 gameStart();
 
 function gameStart() {
+    const previous_value = {}
     word1 = randomWord();
     document.getElementById("myH1").textContent = `Nối đi! Từ tiếp theo là: ${word1} _`;
     score = 0;
@@ -28,6 +28,7 @@ else { document.getElementById("myH2").textContent = 'Từ không tồn tại.';
 
 function nextWord() {
     check_existing_value(word1, word2)
+    console.log(previous_value)
     document.getElementById("myText").value = "" //Empty the input text box
     document.getElementById("myH2").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
