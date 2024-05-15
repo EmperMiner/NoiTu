@@ -103,4 +103,7 @@ function gameOver() {
     document.getElementById("myH1").textContent = `Trò chơi kết thúc`;
     document.getElementById("myH2").textContent = '';
     document.getElementById("score").textContent = `Tổng số từ nối được: ${score}`;
+    for (var i = 0, keys = Object.keys(previousValue), ii = keys.length; i < ii; i++) {
+        console.log(keys[i] + ' ' + previousValue[keys[i]]);
+    }
 }
