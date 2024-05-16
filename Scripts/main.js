@@ -105,7 +105,7 @@ function gameOver(ending) {
     else {
         //Pick a random connecting word
         word2 = vnDictionary[word1][Math.floor(Math.random() * Object.keys(vnDictionary[word1]).length)];
-        document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Gợi ý nối từ: ${word1} ${word2}`;
+        document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Bạn có biết: ${word1} ${word2}`;
     }
     
     document.getElementById("otherDisplay").textContent = listOfWords;
