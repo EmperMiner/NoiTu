@@ -20,7 +20,7 @@ var timerId = setInterval(countdown, 1000);
 modifyTimer(0); //Initialize Timer UI
     
 function countdown() {
-    if (secondsLeft == 0) { gameOver(); }
+    if (secondsLeft == 0) { gameOver("bomb"); }
     else { modifyTimer(-1); }
 }
 
@@ -55,7 +55,7 @@ function nextWord() {
     document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
     if (!vnDictionary.hasOwnProperty(word2)) {
         score++ 
-        gameOver();
+        gameOver("noWords");
         return;
     }
     word1 = word2;
@@ -90,7 +90,7 @@ function gameLogic() {
     }
 }
 
-function gameOver() {
+function gameOver(ending) {
     clearTimeout(timerId);
     gameEnded = true;
     var listOfWords = '';
@@ -98,7 +98,14 @@ function gameOver() {
         listOfWords += keys[i] + ' ' + previousValue[keys[i]] + ' - ';
     }
 
-    document.getElementById("currentWordDisplay").textContent = `Trò chơi kết thúc`;
+    if (ending === "noWords") {
+        document.getElementById("currentWordDisplay").textContent = `Trò chơi kết thúc vì đã hết từ nối!`;
+    }
+    else {
+        word2 = vnDictionary[word1][Math.random() * vnDictionary[word1].length] //Pick a random connecting word
+        document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Gợi ý nối từ: ${word1} ${word2}`;
+    }
+    
     document.getElementById("otherDisplay").textContent = listOfWords;
     document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
