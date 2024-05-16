@@ -103,7 +103,11 @@ function gameOver(ending) {
         document.getElementById("currentWordDisplay").textContent = `Trò chơi kết thúc vì đã hết từ nối!`;
     }
     else {
-        word2 = vnDictionary[word1][Math.random() * Object.keys(vnDictionary[word1]).length]; //Pick a random connecting word
+        //Pick a random connecting word
+        console.log(vnDictionary[word1])
+        console.log(Object.keys(vnDictionary[word1]).length)
+        console.log(Math.floor(Math.random() * Object.keys(vnDictionary[word1]).length))
+        word2 = vnDictionary[word1][Math.floor(Math.random() * Object.keys(vnDictionary[word1]).length)];
         document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Gợi ý nối từ: ${word1} ${word2}`;
     }
     
