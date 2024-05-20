@@ -1,17 +1,18 @@
 import vnDictionary from './vnDictionary.json' with { type: 'json' };
 import word_start from './words_start.json' with { type: 'json' };
-let word1 = randomWord(), word2, score, gameEnded;
-var previousValue = {}
+let word1, word2, score, gameEnded, previousValue;
+
 gameStart();
 function gameStart() {
     gameEnded = false;
-    word1 = randomWord();
+    word1 = word_start[Math.floor(Math.random() * word_start.length)]; //Random starting word
     document.getElementById("currentWordDisplay").textContent = `Từ đầu tiên là: ${word1} _`;
     document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
     document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
+    previousValue = {}
 }
-document.getElementById("reset-btn").onclick = function() { location.reload(); }
+document.getElementById("reset-btn").onclick = function() { location.reload(); } //Refresh page
 
 //Countdown timer
 var secondsLeft = 30, secondsDisplayed, minutesDisplayed;
@@ -43,8 +44,9 @@ document.getElementById("myText").addEventListener("keypress", function(event) {
 //Fixes the error where submitWord() is called once at runtime
 document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!'; 
 
-function submitWord() {word2 = sort_input(document.getElementById("myText").value);
-gameLogic();
+function submitWord() {
+    word2 = (document.getElementById("myText").value).toLowerCase().trim(); //Filter user input
+    gameLogic();
 }
 
 function nextWord() {
@@ -53,19 +55,19 @@ function nextWord() {
     document.getElementById("otherDisplay").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
     document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
-    if (!vnDictionary.hasOwnProperty(word2)) {
+
+    //Check if word1 doesn't exist in vnDictionary OR if we have ran out of word2s for word1
+    let previousValueCopy = [...previousValue[word1]], vnDictionaryCopy = [...vnDictionary[word1]];
+    let keyHasUsedUpWords = previousValueCopy.sort().join(',') === vnDictionaryCopy.sort().join(',');
+    if (!vnDictionary.hasOwnProperty(word2) || keyHasUsedUpWords) {
         score++ 
         gameOver("noWords");
         return;
     }
+
     word1 = word2;
     document.getElementById("currentWordDisplay").textContent = `Ngon! Từ mới là: ${word1} _`;
 }
-function randomWord() {
-let currentWord = word_start[Math.floor(Math.random() * word_start.length)];
-return currentWord;
-}
-function sort_input(word) { return word.toLowerCase().trim(); }
 
 function gameLogic() {  
     if(!vnDictionary[word1].includes(word2)) {   
@@ -104,7 +106,14 @@ function gameOver(ending) {
     }
     else {
         //Pick a random connecting word
-        word2 = vnDictionary[word1][Math.floor(Math.random() * Object.keys(vnDictionary[word1]).length)];
+        let word2Index = Math.floor(Math.random() * Object.keys(vnDictionary[word1]).length)
+        word2 = vnDictionary[word1][word2Index];
+        //WITHOUT REPEATING a previousValue
+        while (previousValue.hasOwnProperty(word1) && previousValue[word1].indexOf(word2) != -1) {
+            word2Index += (word2Index === 0) ? 1 : -1;
+            word2 = vnDictionary[word1][word2Index];
+        }
+        
         document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Bạn có biết: ${word1} ${word2}`;
     }
     
