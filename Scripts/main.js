@@ -6,7 +6,7 @@ gameStart();
 function gameStart() {
     gameEnded = false;
     word1 = word_start[Math.floor(Math.random() * word_start.length)]; //Random starting word
-    document.getElementById("currentWordDisplay").textContent = `Từ đầu tiên là: ${word1} _`;
+    document.getElementById("currentWordDisplay").textContent = `${word1} `;
     document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
     document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
@@ -30,7 +30,7 @@ function modifyTimer(time) {
     //Refresh timer UI
     minutesDisplayed = Math.floor(secondsLeft / 60);
     secondsDisplayed = secondsLeft % 60;
-    elem.innerHTML = `Bom nổ trong ${minutesDisplayed}m${secondsDisplayed}s`;
+    elem.innerHTML = `${minutesDisplayed}m${secondsDisplayed}s`;
 }
 
 //Enter for submitting
@@ -52,7 +52,7 @@ function submitWord() {
 function nextWord() {
     modifyTimer(5) //Add 5 seconds every time you get a word right
     document.getElementById("myText").value = "" //Empty the input text box
-    document.getElementById("otherDisplay").textContent = `Từ trước là: ${word1} ${word2}`
+    document.getElementById("otherDisplay").textContent = `${word1} ${word2}`
     score++;
     document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
 
@@ -66,7 +66,7 @@ function nextWord() {
     }
 
     word1 = word2;
-    document.getElementById("currentWordDisplay").textContent = `Ngon! Từ mới là: ${word1} _`;
+    document.getElementById("currentWordDisplay").textContent = `${word1}  `;
 }
 
 function gameLogic() {  

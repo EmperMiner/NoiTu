@@ -16,3 +16,45 @@ flex-direction: column;
 min-height: 100vh;
 background-color: #EEEEEE;
 }
+
+#scoreDisplay{
+  margin-bottom: 50px;
+}
+
+.timer-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px
+}
+
+#bomb{
+  width: 150px;
+}
+
+#timer{
+  position: absolute;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+  color: #EEEEEE;
+  font-size: 25px;
+  padding-top: 70px;
+  padding-right: 20px;
+}
+
+.word{
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+}
+
+#myText{
+  padding-left: 50px;
+}
+
+#otherDisplay{
+  color: #696969;
+}
