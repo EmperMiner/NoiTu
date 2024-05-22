@@ -47,6 +47,7 @@ document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ n�
 
 function submitWord() {
     word2 = (document.getElementById("myText").value).toLowerCase().trim(); //Filter user input
+    listOfWords += word1 + ' ' + word2 + ' - ';
     gameLogic();
 }
 
@@ -67,7 +68,7 @@ function nextWord() {
     }
 
     word1 = word2;
-    document.getElementById("currentWordDisplay").textContent = `Ngon! Từ mới là: ${word1} _`;
+    document.getElementById("currentWordDisplay").textContent = `${word1}`;
 }
 
 function gameLogic() {  
@@ -96,10 +97,6 @@ function gameLogic() {
 function gameOver(ending) {
     clearTimeout(timerId);
     gameEnded = true;
-    var listOfWords = '';
-    for (var i = 0, keys = Object.keys(previousValue), ii = keys.length; i < ii; i++) {
-        listOfWords += keys[i] + ' ' + previousValue[keys[i]] + ' - ';
-    }
 
     //Display death message depending on how you died
     if (ending === "noWords") {
