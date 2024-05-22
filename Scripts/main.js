@@ -6,10 +6,10 @@ gameStart();
 function gameStart() {
     gameEnded = false;
     word1 = word_start[Math.floor(Math.random() * word_start.length)]; //Random starting word
-    document.getElementById("currentWordDisplay").textContent = `${word1} `;
+    document.getElementById("currentWordDisplay").textContent = `${word1}`;
     document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
-    document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
+    document.getElementById("scoreDisplay").textContent = `${score}`;
     previousValue = {}
 }
 document.getElementById("reset-btn").onclick = function() { location.reload(); } //Refresh page
@@ -28,9 +28,10 @@ function countdown() {
 function modifyTimer(time) {
     secondsLeft += time;
     //Refresh timer UI
-    minutesDisplayed = Math.floor(secondsLeft / 60);
-    secondsDisplayed = secondsLeft % 60;
-    elem.innerHTML = `${minutesDisplayed}m${secondsDisplayed}s`;
+    minutesDisplayed = (Math.floor(secondsLeft / 60)).toString();
+    secondsDisplayed = (secondsLeft % 60).toString();
+    if (secondsDisplayed < 10) { secondsDisplayed = `0${secondsDisplayed}` }
+    elem.innerHTML = minutesDisplayed + ":" + secondsDisplayed;
 }
 
 //Enter for submitting
@@ -52,9 +53,9 @@ function submitWord() {
 function nextWord() {
     modifyTimer(5) //Add 5 seconds every time you get a word right
     document.getElementById("myText").value = "" //Empty the input text box
-    document.getElementById("otherDisplay").textContent = `${word1} ${word2}`
+    document.getElementById("otherDisplay").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
-    document.getElementById("scoreDisplay").textContent = `Số từ nối được: ${score}`;
+    document.getElementById("scoreDisplay").textContent = `s${score}`;
 
     //Check if word1 doesn't exist in vnDictionary OR if we have ran out of word2s for word1
     let previousValueCopy = [...previousValue[word1]], vnDictionaryCopy = [...vnDictionary[word1]];
@@ -66,7 +67,7 @@ function nextWord() {
     }
 
     word1 = word2;
-    document.getElementById("currentWordDisplay").textContent = `${word1}  `;
+    document.getElementById("currentWordDisplay").textContent = `Ngon! Từ mới là: ${word1} _`;
 }
 
 function gameLogic() {  
@@ -116,7 +117,8 @@ function gameOver(ending) {
         
         document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Bạn có biết: ${word1} ${word2}`;
     }
-    
+    document.getElementById("myText").style.display = "none";
+    document.getElementById("mySubmit").style.display = "none";
     document.getElementById("otherDisplay").textContent = listOfWords;
     document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
