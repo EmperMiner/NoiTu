@@ -1,7 +1,7 @@
 <!--First time writing HTML code in a long ass time-->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" dir="ltr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,16 @@
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
+        <h2 id="scoreDisplay">Đang tải điểm...</h2>
         <h1 id="timer">Đang tải thời gian nổ</h1>
         <h1 id="currentWordDisplay">Đang tải từ...</h1>
-        <h2 id="scoreDisplay">Đang tải điểm...</h2>
         <h3 id="otherDisplay">Bạn chưa nối từ nào!</h3>
         
         <input id="myText" placeholder="Nhập vào đây" autocomplete="off"><br><br>
-        <button id="mySubmit">Nối!</button>
-        <button id="reset-btn">Reset</button>
-
+        <class class="button">
+            <button id="mySubmit">Nối!</button>
+            <button id="reset-btn">Reset</button>
+        </class>
         <script type="module" src="Scripts/main.js"></script>
     </body>
 </html>
