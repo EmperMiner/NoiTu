@@ -41,7 +41,7 @@ document.getElementById("myText").addEventListener("keypress", function(event) {
     if (event.key === "Enter" && gameEnded == false) { submitWord(); }
 });
 //Fixes the error where submitWord() is called once at runtime
-document.getElementById("otherDisplay1").textContent = 'chưa nối'; 
+document.getElementById("previousWord1").textContent = ''; 
 
 function submitWord() {
     word2 = (document.getElementById("myText").value).toLowerCase().trim(); //Filter user input
@@ -52,8 +52,8 @@ function nextWord() {
     listOfWords += word1 + ' ' + word2 + ' - ';
     modifyTimer(5) //Add 5 seconds every time you get a word right
     document.getElementById("myText").value = "" //Empty the input text box
-    document.getElementById("otherDisplay2").textContent = document.getElementById("otherDisplay1").textContent
-    document.getElementById("otherDisplay1").textContent = `${word1} ${word2}`
+    document.getElementById("previousWord2").textContent = document.getElementById("previousWord1").textContent
+    document.getElementById("previousWord1").textContent = `${word1} ${word2}`;
     score++;
     document.getElementById("scoreDisplay").textContent = `${score}`;
 
@@ -65,6 +65,7 @@ function nextWord() {
         gameOver("noWords");
         return;
     }
+    document.getElementById("errorDisplay").style.display = "none";
 
     word1 = word2;
     document.getElementById("currentWordDisplay").textContent = `${word1}`;
@@ -72,7 +73,8 @@ function nextWord() {
 
 function gameLogic() {  
     if(!vnDictionary[word1].includes(word2)) {   
-        document.getElementById("otherDisplay1").textContent = 'Từ không tồn tại XD'; 
+        document.getElementById("errorDisplay").style.display = "block";
+        document.getElementById("errorDisplay").textContent = 'Từ không tồn tại XD'; 
         return;
     }
     
@@ -80,7 +82,8 @@ function gameLogic() {
     if (word1 in previousValue) {
         //Check if word2 is a value of the key word1 in previousValue
         if (previousValue[word1].includes(word2)) {
-            document.getElementById("otherDisplay1").textContent = 'Từ đã được sử dụng :P'
+            document.getElementById("errorDisplay").style.display = "block";
+            document.getElementById("errorDisplay").textContent = 'Từ đã được sử dụng :P'
         }
         else {                
             previousValue[word1].push(word2); //Add value word2 to the key word1
@@ -115,8 +118,9 @@ function gameOver(ending) {
     }
     document.getElementById("myText").style.display = "none";
     document.getElementById("mySubmit").style.display = "none";
-    if (listOfWords === "") { document.getElementById("otherDisplay1").textContent = "Sao không nối :("}
-    else { document.getElementById("otherDisplay1").textContent = listOfWords; }
+    document.getElementById("previousWord2").style.display = "none";
+    if (listOfWords === "") { document.getElementById("previousWord1").textContent = "Sao không nối :("}
+    else { document.getElementById("previousWord1").textContent = listOfWords; }
     
     document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
