@@ -3,58 +3,65 @@
 
 *{
 margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: "Be Vietnam Pro", sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
+  text-align: center;
 }
 
-body{
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-min-height: 100vh;
-background-color: #EEEEEE;
-}
-
-#scoreDisplay{
-  margin-bottom: 50px;
-}
-
-.timer-container{
+main{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 30px
+  min-height: 100vh;
+  background-color: #EEEEEE;
+}
+
+main > div{
+  padding-bottom: 2vh;
+}
+
+.timer-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 #bomb{
-  width: 150px;
+  width: 25vh;
 }
 
 #timer{
   position: absolute;
-  width: min-content;
-  height: min-content;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   white-space: nowrap;
-  flex-direction: column;
   color: #EEEEEE;
-  font-size: 25px;
-  padding-top: 70px;
-  padding-right: 20px;
+  font-size: 4vh;
+  font-weight: bold;
 }
 
 .word{
   display: flex;
-  align-items: center;
-  align-content: space-between;
+  flex-direction: row;
+  gap: 1vh;
 }
 
 #myText{
-  padding-left: 50px;
+  min-height: 5vh;
+  max-width: 20vh;
+  background-color: #EEEEEE;
+  font-size: 5vh;
+  font-weight: bold;  
+  text-align: left;
 }
 
-#otherDisplay{
+#chain{
+  width: 4vh;
+}
+.otherDisplay{
   color: #696969;
+  padding-bottom: 2vh;
 }
