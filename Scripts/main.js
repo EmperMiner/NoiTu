@@ -1,6 +1,6 @@
 import vnDictionary from './vnDictionary.json' with { type: 'json' };
 import word_start from './words_start.json' with { type: 'json' };
-let word1, word2, score, gameEnded, previousValue, listOfWords = "";
+let word1, word2, score, gameEnded, previousValue, stringOfWords = "";
 
 gameStart();
 function gameStart() {
@@ -49,7 +49,7 @@ function submitWord() {
 }
 
 function nextWord() {
-    listOfWords += word1 + ' ' + word2 + ' - ';
+    stringOfWords += word1 + ' ' + word2 + ' - ';
     modifyTimer(5) //Add 5 seconds every time you get a word right
     document.getElementById("myText").value = "" //Empty the input text box
     document.getElementById("previousWord2").textContent = document.getElementById("previousWord1").textContent
@@ -116,11 +116,14 @@ function gameOver(ending) {
         
         document.getElementById("currentWordDisplay").textContent = `Bom đã nổ! Bạn có biết: ${word1} ${word2}`;
     }
+    //Hide some elements away when game ends
     document.getElementById("myText").style.display = "none";
     document.getElementById("mySubmit").style.display = "none";
     document.getElementById("previousWord2").style.display = "none";
-    if (listOfWords === "") { document.getElementById("previousWord1").textContent = "Sao không nối :("}
-    else { document.getElementById("previousWord1").textContent = listOfWords; }
+    document.getElementById("errorDisplay").style.display = "none";
+
+    if (stringOfWords === "") { document.getElementById("previousWord1").textContent = "Sao không nối :("}
+    else { document.getElementById("previousWord1").textContent = stringOfWords.slice(0, -3); }
     
     document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
