@@ -7,9 +7,7 @@ function gameStart() {
     gameEnded = false;
     word1 = word_start[Math.floor(Math.random() * word_start.length)]; //Random starting word
     document.getElementById("currentWordDisplay").textContent = `${word1}`;
-    document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ nào!';
     score = 0;
-    document.getElementById("scoreDisplay").textContent = `${score}`;
     previousValue = {}
 }
 document.getElementById("reset-btn").onclick = function() { location.reload(); } //Refresh page
@@ -56,7 +54,7 @@ function nextWord() {
     document.getElementById("myText").value = "" //Empty the input text box
     document.getElementById("otherDisplay").textContent = `Từ trước là: ${word1} ${word2}`
     score++;
-    document.getElementById("scoreDisplay").textContent = `s${score}`;
+    document.getElementById("scoreDisplay").textContent = `${score}`;
 
     //Check if word1 doesn't exist in vnDictionary OR if we have ran out of word2s for word1
     let previousValueCopy = [...previousValue[word1]], vnDictionaryCopy = [...vnDictionary[word1]];
