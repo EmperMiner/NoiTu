@@ -1,6 +1,6 @@
 import vnDictionary from './vnDictionary.json' with { type: 'json' };
 import word_start from './words_start.json' with { type: 'json' };
-let word1, word2, score, gameEnded, previousValue, listOfWords;
+let word1, word2, score, gameEnded, previousValue, listOfWords = "";
 
 gameStart();
 function gameStart() {
@@ -45,11 +45,11 @@ document.getElementById("otherDisplay").textContent = 'Bạn chưa nối từ n�
 
 function submitWord() {
     word2 = (document.getElementById("myText").value).toLowerCase().trim(); //Filter user input
-    listOfWords += word1 + ' ' + word2 + ' - ';
     gameLogic();
 }
 
 function nextWord() {
+    listOfWords += word1 + ' ' + word2 + ' - ';
     modifyTimer(5) //Add 5 seconds every time you get a word right
     document.getElementById("myText").value = "" //Empty the input text box
     document.getElementById("otherDisplay").textContent = `Từ trước là: ${word1} ${word2}`
@@ -114,6 +114,8 @@ function gameOver(ending) {
     }
     document.getElementById("myText").style.display = "none";
     document.getElementById("mySubmit").style.display = "none";
-    document.getElementById("otherDisplay").textContent = listOfWords;
+    if (listOfWords === "") { document.getElementById("otherDisplay").textContent = "Sao không nối :("}
+    else { document.getElementById("otherDisplay").textContent = listOfWords; }
+    
     document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
 }
