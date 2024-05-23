@@ -61,8 +61,29 @@ main > div{
 
 #chain{
   width: 4vh;
+  box-shadow: 3vh 0vh 5vh 0vh rgba(141, 129, 129, 0.75);
+  border-radius: 5vh;
+  overflow: hidden;
+}
+/*Some update*/
+#home{
+  width: 4vh;
+  height: 6vh;
+  border-radius: 5vh;
+  overflow: hidden;
+}
+#retry{
+  width: 4vh;
+  height: 6vh;
+  border-radius: 5vh;
+  overflow: hidden;
 }
 .otherDisplay{
-  color: #696969;
+  color: #181313;
   padding-bottom: 2vh;
+}
+button{
+  width: 7vh;
+  border-radius: 5vh;
+  overflow: hidden;
 }
