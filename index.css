@@ -4,7 +4,6 @@
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Be Vietnam Pro", sans-serif;
   text-align: center;
 }
@@ -73,8 +72,72 @@ main > div{
 
 #chain{
   width: 4vh;
+  cursor: pointer;
+}
+
+.other-container{
+  position: absolute;
+  top: 60vh;
+  display: flex;
+  flex-direction: column;
 }
 .otherDisplay{
   color: #696969;
-  padding-bottom: 2vh;
+  padding-top: 0vh;
+}
+
+.btn-container{
+  position: absolute;
+  bottom: 10vh;
+  display: flex;
+}
+
+.btn-container button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid black;
+  background-color: #ffffff;
+  margin: 0 1vw;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s;
+}
+
+.btn-container button::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  top: -90px;
+  left: 0;
+  background: black;
+  border: none;
+  position: absolute;
+  transition: 0.5s;
+}
+
+.btn-container button:hover{
+  transform: translateY(-10px);
+}
+
+.btn-container button:hover::after{
+  top: 0;
+}
+
+.btn-container button .icon{
+  width: 4vh;
+  padding: auto;
+  position: relative;
+  z-index: 10;
+  transition: fill 0.5s;
+}
+
+.btn-container button:hover .icon path{
+  fill: #ffffff; /* gắn fill thẳng vào path của svg */
+}
+
+#errorDisplay{
+  position: absolute;
+  bottom: 25vh;
 }
