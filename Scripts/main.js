@@ -125,5 +125,5 @@ function gameOver(ending) {
     if (stringOfWords === "") { document.getElementById("previousWord1").textContent = "Sao không nối :("}
     else { document.getElementById("previousWord1").textContent = stringOfWords.slice(0, -3); }
     
-    document.getElementById("scoreDisplay").textContent = `Tổng số từ nối được: ${score}`;
+    document.getElementById("scoreDisplay").textContent = `${score}`;
 }
